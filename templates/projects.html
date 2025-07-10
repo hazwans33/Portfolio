@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h2>Projects</h2>
+
+    <div class="accordion">
+        <button class="accordion-btn">Green Energy Usage Monitoring</button>
+        <div class="accordion-panel">
+            <p>A web-based platform to track and optimize energy usage. I developed CRUD pages for staff using Flask and HTML.</p>
+            <p><strong>Tools:</strong> Flask, HTML, VSCode</p>
+            <p><strong>Soft Skills:</strong> Teamwork, Attention to Detail</p>
+            <div class="project-images">
+                <img src="{{ url_for('static', filename='images/combrn_1.png') }}" alt="Product List View">
+                <img src="{{ url_for('static', filename='images/combrn_2.png') }}" alt="Add Product Form">
+            </div>
+        </div>
+
+        <button class="accordion-btn">Startup E-Commerce Website</button>
+        <div class="accordion-panel">
+            <p>An HTML site for selling headphones with slideshows and 3rd-party payment links.</p>
+            <p><strong>Tools:</strong> HTML, Notepad++</p>
+            <p><strong>Soft Skills:</strong> Marketing, Design Thinking</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

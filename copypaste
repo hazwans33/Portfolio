@@ -1,0 +1,154 @@
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+{% extends 'base.html' %}
+{% block content %}
+<header class="top-section">
+    <img src="{{ url_for('static', filename='images/profile.jpg') }}" class="profile-pic">
+    <h1>Muhammad Afiq Hazwan</h1>
+    <p>Infocomm & Security Student</p>
+</header>
+
+<section>
+    <h2>Technical Skills</h2>
+    <ul class="skill-list">
+        <li>Python, Flask, HTML/CSS</li>
+        <li>Linux Admin, OWASP</li>
+        <li>MySQL, Git, Data Analytics</li>
+    </ul>
+
+    <h2>Certifications</h2>
+    <p>To be added manually if available. (You can share them!)</p>
+
+    <h2>Resume Highlights</h2>
+
+    <button class="toggle-header">Education</button>
+    <div class="toggle-content">
+        <ul>
+            <li>Nanyang Polytechnic – Infocomm & Security (2023–Present)</li>
+            <li>Greendale Secondary School – GCE ‘N’ Levels (2019–2022)</li>
+            <li>North Vista Primary School – PSLE (2012–2018)</li>
+        </ul>
+    </div>
+
+    <button class="toggle-header">Work Experience</button>
+    <div class="toggle-content">
+        <ul>
+            <li>Grabfood – Feb 2025–Now</li>
+            <li>Timezone – Aug 2023–Jan 2025</li>
+            <li>Popular Bookstore – Mar 2023–Aug 2023</li>
+        </ul>
+    </div>
+
+    <button class="toggle-header">Achievements & Awards</button>
+    <div class="toggle-content">
+        <ul>
+            <li>Top 25% of Cohort – 2022</li>
+            <li>Edusave Scholarship – 2021</li>
+            <li>Edusave Good Progress – 2018</li>
+        </ul>
+    </div>
+
+    <button class="toggle-header">Co-Curricular Activities</button>
+    <div class="toggle-content">
+        <ul>
+            <li>NY Polytechnic Floorball Team – 2023–2024</li>
+            <li>Pesta Sukan (4th Placing) – 2024</li>
+            <li>Greendale Floorball Club – 2019–2022</li>
+        </ul>
+    </div>
+
+    <button class="toggle-header">Languages</button>
+    <div class="toggle-content">
+        <ul>
+            <li>English – Professional</li>
+            <li>Malay – Proficient</li>
+        </ul>
+    </div>
+
+    <button class="toggle-header">Personal Details</button>
+    <div class="toggle-content">
+        <ul>
+            <li>Date of Birth: 4 Nov 2006</li>
+            <li>Gender: Male</li>
+            <li>Nationality: Singaporean</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Afiq Hazwan | Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('projects') }}">Projects</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+
+    <!-- Page Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>
+
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h2>Contact</h2>
+    <ul>
+        <li><strong>Phone:</strong> +65 8922 2031</li>
+        <li><strong>Email:</strong> 231215H@mymail.nyp.edu.sg</li>
+        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/afiq-hazwan" target="_blank">Afiq Hazwan</a></li>
+        <li><strong>Address:</strong> Blk 410C Fernvale Road #06-92, Singapore 793410</li>
+    </ul>
+</section>
+{% endblock %}
+
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h2>Projects</h2>
+
+    <div class="accordion">
+        <button class="accordion-btn">Green Energy Usage Monitoring</button>
+        <div class="accordion-panel">
+            <p>A web-based dashboard to track energy usage and optimize consumption. Built the staff-facing CRUD system.</p>
+            <p><strong>Tools:</strong> Flask, HTML</p>
+        </div>
+
+        <button class="accordion-btn">Startup E-Commerce Website</button>
+        <div class="accordion-panel">
+            <p>Created an HTML site to sell headphones, integrated a slideshow and third-party payment links.</p>
+            <p><strong>Tools:</strong> HTML, Notepad++</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
