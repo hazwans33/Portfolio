@@ -1,8 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
 @app.route('/')
+def home():
+    return redirect(url_for('about'))
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -21,7 +24,7 @@ if __name__ == '__main__':
 {% extends 'base.html' %}
 {% block content %}
 <header class="top-section">
-    <img src="{{ url_for('static', filename='images/profile.jpg') }}" class="profile-pic">
+    <img src="{{ url_for('static', filename='images/profile_port.jpg.png') }}" class="profile-pic">
     <h1>Muhammad Afiq Hazwan</h1>
     <p>Infocomm & Security Student</p>
 </header>
@@ -34,8 +37,13 @@ if __name__ == '__main__':
         <li>MySQL, Git, Data Analytics</li>
     </ul>
 
-    <h2>Certifications</h2>
-    <p>To be added manually if available. (You can share them!)</p>
+    <h2>Non-Technical Skills</h2>
+    <ul class="skill-list">
+        <li>Team Leadership</li>
+        <li>Problem Solving</li>
+        <li>Time Management</li>
+        <li>Communication</li>
+    </ul>
 
     <h2>Resume Highlights</h2>
 
@@ -43,8 +51,8 @@ if __name__ == '__main__':
     <div class="toggle-content">
         <ul>
             <li>Nanyang Polytechnic – Infocomm & Security (2023–Present)</li>
-            <li>Greendale Secondary School – GCE ‘N’ Levels (2019–2022)</li>
-            <li>North Vista Primary School – PSLE (2012–2018)</li>
+            <li>Greendale Secondary – GCE ‘N’ Levels (2019–2022)</li>
+            <li>North Vista Primary – PSLE (2012–2018)</li>
         </ul>
     </div>
 
@@ -104,17 +112,15 @@ if __name__ == '__main__':
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('projects') }}">Projects</a>
-        <a href="{{ url_for('contact') }}">Contact</a>
-    </nav>
+<nav class="navbar">
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+</nav>
 
-    <!-- Page Content -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+<main>
+    {% block content %}{% endblock %}
+</main>
 
 </body>
 </html>
@@ -132,6 +138,7 @@ if __name__ == '__main__':
 </section>
 {% endblock %}
 
+
 {% extends 'base.html' %}
 {% block content %}
 <section>
@@ -140,15 +147,137 @@ if __name__ == '__main__':
     <div class="accordion">
         <button class="accordion-btn">Green Energy Usage Monitoring</button>
         <div class="accordion-panel">
-            <p>A web-based dashboard to track energy usage and optimize consumption. Built the staff-facing CRUD system.</p>
-            <p><strong>Tools:</strong> Flask, HTML</p>
+            <p>A web-based platform to track and optimize energy usage. I developed CRUD pages for staff using Flask and HTML.</p>
+            <p><strong>Tools:</strong> Flask, HTML, VSCode</p>
+            <p><strong>Soft Skills:</strong> Teamwork, Attention to Detail</p>
+            <div class="project-images">
+                <img src="{{ url_for('static', filename='images/combrn_1.png') }}" alt="Product List View">
+                <img src="{{ url_for('static', filename='images/combrn_2.png') }}" alt="Add Product Form">
+            </div>
         </div>
 
         <button class="accordion-btn">Startup E-Commerce Website</button>
         <div class="accordion-panel">
-            <p>Created an HTML site to sell headphones, integrated a slideshow and third-party payment links.</p>
+            <p>An HTML site for selling headphones with slideshows and 3rd-party payment links.</p>
             <p><strong>Tools:</strong> HTML, Notepad++</p>
+            <p><strong>Soft Skills:</strong> Marketing, Design Thinking</p>
         </div>
     </div>
 </section>
 {% endblock %}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".accordion-btn, .toggle-header");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const content = btn.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+});
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f3f2ef;
+    color: #1f1f1f;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: #0a66c2;
+    padding: 1em;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+.top-section {
+    background-color: #0a66c2;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    margin-bottom: 10px;
+}
+
+section {
+    padding: 30px 10%;
+    background-color: white;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 1000px;
+}
+
+h2 {
+    color: #0a66c2;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.skill-list li {
+    background-color: #e2f0fb;
+    color: #0a66c2;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.accordion-btn, .toggle-header {
+    background-color: #e2f0fb;
+    color: #0a66c2;
+    cursor: pointer;
+    padding: 14px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 1rem;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.accordion-panel, .toggle-content {
+    display: none;
+    padding: 0 18px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #0a66c2;
+    margin-bottom: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.project-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.project-images img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
